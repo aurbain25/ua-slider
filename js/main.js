@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
         slidesToScroll: 1,
         slidesVisible: 6,
         infinite: true,
-        pagination: true
+        pagination: true,
+        slideFix: 3
     });
 });

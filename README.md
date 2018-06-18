@@ -9,3 +9,4 @@
 | Pagination | Finalize |
 | Pagination with Thumbnail | In Progress |
 | Automatic Scrolling | In Progress |
+| Touch Scrolling | In Progress |
