@@ -15,19 +15,20 @@
     });
 });*/
 
-document.addEventListener('DOMContentLoaded', function () {
+/*document.addEventListener('DOMContentLoaded', function () {
     new uaSlider(document.querySelector("#slider_3"), {
         slidesToScroll: 1,
         slidesVisible: 3,
         infinite: true,
         pagination: true
     });
-});
+});*/
 
 document.addEventListener('DOMContentLoaded', function () {
     new uaSlider(document.querySelector("#slider_4"), {
         slidesToScroll: 1,
         slidesVisible: 6,
-        infinite: true
+        infinite: true,
+        pagination: true
     });
 });
