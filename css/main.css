@@ -6,7 +6,6 @@ html, body, h1 {
 
 body {
     font-family: "sans-serif";
-    padding: 50px;
     /*background: linear-gradient(45deg, #f37646, #f3e946) center center no-repeat;*/
     line-height: 1.4;
 }
@@ -19,16 +18,11 @@ h1.title {
 }
 
 .item {
-    margin: 40px 2.5px;
     background-color: #ffffff;
     /*box-shadow: 0 15px 35px #3232321e, 0 5px 15px #0000001e;*/
     border: 1px solid #cccccc;
     transition: transform 0.3s;
     transform: translate3d(0, -1px, 0);
-}
-
-.item:hover {
-    transform: translate3d(0, -10px, 0);
 }
 
 .item .image div {

@@ -15,6 +15,8 @@ class uaSlider {
      * @param {boolean} options.navigation Active the navigation
      * @param {boolean} options.pagination Active the pagination
      * @param {boolean} options.infinite Active infinite slider
+     * @param {number} options.slideSpace Space between two slide
+     * @param {number} options.slideFix Location of the fix slide (first or last slide visible)
      */
     constructor(element, options = {}) {
         this.element = element;
@@ -23,7 +25,9 @@ class uaSlider {
             slidesVisible: 1,
             navigation: true,
             pagination: false,
-            infinite: false
+            infinite: false,
+            slideSpace: 5,
+            slideFix: 0
         }, options);
 
         if(this.options.slidesVisible < this.options.slidesToScroll) {
@@ -36,8 +40,13 @@ class uaSlider {
         // Construct slider
         this.root = this.createDivWithClass("ua_slider");
         this.mainContainer = this.createDivWithClass("ua_slider_main_container");
+
+        this.allItemsContainer = this.createDivWithClass("ua_slider_all_items_container");
+        this.allItemsContainer.style.marginRight = "-" + this.options.slideSpace + "px";
+
         this.container = this.createDivWithClass("ua_slider_container");
-        this.mainContainer.appendChild(this.container);
+        this.allItemsContainer.appendChild(this.container);
+        this.mainContainer.appendChild(this.allItemsContainer);
         this.root.appendChild(this.mainContainer);
 
         // Init current item
@@ -45,6 +54,9 @@ class uaSlider {
 
         // Init offset
         this.offset = 0;
+
+        // Init slideFix
+        this.slideFix = undefined;
 
         // Add slider to element
         this.element.appendChild(this.root);
@@ -59,6 +71,14 @@ class uaSlider {
 
             return item;
         });
+
+        if(this.options.slideFix !== 0) {
+            if (this.options.slideFix <= this.options.slidesVisible) {
+                this.initSlideFix();
+            } else {
+                throw new Error("the position of the fix slide is impossible !");
+            }
+        }
 
         // Add clone items before and after items to init infinite loop
         if(this.options.infinite) {
@@ -79,7 +99,12 @@ class uaSlider {
                 ...this.items.slice(0, this.offset).map(item => item.cloneNode(true))
             ];
 
-            this.goToItem(this.offset, false);
+            let position = this.offset;
+            if(this.slideFix !== undefined && this.options.slideFix === 1) {
+                position = position - 1;
+            }
+
+            this.goToItem(position, false);
         }
 
         // Add final item's list in the container
@@ -123,8 +148,24 @@ class uaSlider {
 
         this.setStyle();
         this.onWindowResize();
+    }
 
-        // new uaSliderTouchPlugin(this);
+    initSlideFix() {
+        this.slideFix = this.items[this.options.slideFix - 1];
+
+        let newList = [];
+
+        this.items.forEach((item, key) => {
+            if(key !== this.options.slideFix - 1) {
+                newList.push(item);
+            }
+        });
+
+        this.items = newList;
+
+        this.slideFix.classList.add("ua_slider_fix");
+
+        this.allItemsContainer.appendChild(this.slideFix);
     }
 
     /**
@@ -132,9 +173,23 @@ class uaSlider {
      */
     setStyle () {
         let ratio = this.items.length / this.slidesVisible;
-        this.container.style.width = (ratio * 100) + "%";
+        let paddingRight = this.options.slideSpace;
 
-        this.items.forEach(item => item.style.width = ((100 / this.slidesVisible) / ratio) + "%");
+        this.container.style.width = (ratio * 100) + "%";
+        if(this.slideFix !== undefined) {
+            this.slideFix.style.width = "calc(" + (100 / this.slidesVisible).toFixed(2) + "%" + " - " + (paddingRight - 1) + "px)";
+
+            if(this.options.slideFix === this.options.slidesVisible) {
+                this.slideFix.style.left = "calc(" + (100 / this.slidesVisible) * (this.options.slideFix - 1) + "% + " + (paddingRight - 1) + "px)";
+            } else {
+                this.slideFix.style.left = (100 / this.slidesVisible) * (this.options.slideFix - 1) + "%";
+            }
+        }
+
+        this.items.forEach((item) => {
+            item.style.paddingRight = paddingRight + "px";
+            item.style.width = "calc(" + ((100 / this.slidesVisible) / ratio) + "%" + " - " + paddingRight + "px)";
+        });
 
         if(this.options.pagination) {
             if(this.isMobile) {
@@ -183,6 +238,10 @@ class uaSlider {
 
         if(calcNbButton > nbButtons) {
             nbButtons = nbButtons + 1;
+        }
+
+        if(this.slideFix !== undefined) {
+            nbButtons = nbButtons - 1;
         }
 
         for(let i = 0; i <= nbButtons; i++) {
@@ -345,64 +404,5 @@ class uaSlider {
      */
     get slidesVisible () {
         return this.isMobile ? 1 : this.options.slidesVisible;
-    }
-}
-
-/**
- * Add tactile navigation to uaSlider
- */
-class uaSliderTouchPlugin {
-
-    /**
-     *
-     * @param {uaSlider} slider
-     */
-    constructor(slider) {
-        slider.element.addEventListener('mousedown', this.startDrag.bind(this));
-        slider.element.addEventListener('touchstart', this.startDrag.bind(this));
-
-        window.addEventListener('mousedown', this.drag.bind(this));
-        window.addEventListener('touchstart', this.drag.bind(this));
-
-        this.slider = slider;
-    }
-
-    /**
-     * Start the slider move at the touch
-     * @param {Touch | null} e
-     * @param {TouchList | null} e.touches
-     */
-    startDrag (e) {
-        if(e.touches) {
-            if (e.touches.length > 1) {
-                return false;
-            } else {
-                e = e.touches.item(0);
-            }
-        }
-
-        this.origin = {
-            x: e.screenX,
-            y: e.screenY
-        };
-
-        this.slider.disableTransition();
-    }
-
-    /**
-     * Move the slider
-     * @param {Touch | null} e
-     * @param {TouchList | null} e.touches
-     */
-    drag (e) {
-        if(this.origin) {
-            let point = e.touches ? e.touches.item(0) : e;
-            let translation = {
-                x: point.screenX - this.origin.x,
-                y: point.screenY - this.origin.y
-            };
-
-            console.log(translation);
-        }
     }
 }
