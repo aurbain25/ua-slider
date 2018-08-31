@@ -8,5 +8,5 @@
 | Navigation | Finish |
 | Pagination | Finish |
 | Pagination with Thumbnail | In Progress |
-| Automatic Scrolling | In Progress |
+| Automatic Scrolling | Finish |
 | Touch Scrolling | In Progress |
