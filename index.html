@@ -5,311 +5,633 @@
     <meta charset="utf-8" />
 
     <title>Slider JS</title>
+
+    <link rel="icon" href="http://usefulangle.com/img/thumb/ui-ux-logo.svg" type="image/png">
+
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/uaSlider.css">
+    <link rel="stylesheet" href="css/prism.css">
 </head>
 
 <body>
     <div class="main_container">
-        <h1 class="title">Project</h1>
 
-        <div id="slider_1">
-            <div class="item">
-                <div class="image">
-                    <div style="background: url('img/img_1.jpg')"></div>
+        <div class="classic-slider">
+            <h3>Classic Slider</h3>
+
+            <div id="slider_1">
+                <div class="item">
+                    <div class="image">
+                        <div style="background: url('img/img_1.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 1</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
                 </div>
-                <div class="body">
-                    <div class="title">Titre 1</div>
-                    <div class="description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                <div class="item">
+                    <div class="image">
+                        <div style="background: url('img/img_2.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 2</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="image">
+                        <div style="background: url('img/img_1.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 3</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="image">
+                        <div style="background: url('img/img_2.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 4</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="image">
+                        <div style="background: url('img/img_1.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 5</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="item">
-                <div class="image">
-                    <div style="background: url('img/img_2.jpg')"></div>
-                </div>
-                <div class="body">
-                    <div class="title">Titre 2</div>
-                    <div class="description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="image">
-                    <div style="background: url('img/img_1.jpg')"></div>
-                </div>
-                <div class="body">
-                    <div class="title">Titre 3</div>
-                    <div class="description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="image">
-                    <div style="background: url('img/img_2.jpg')"></div>
-                </div>
-                <div class="body">
-                    <div class="title">Titre 4</div>
-                    <div class="description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="image">
-                    <div style="background: url('img/img_1.jpg')"></div>
-                </div>
-                <div class="body">
-                    <div class="title">Titre 5</div>
-                    <div class="description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </div>
-                </div>
-            </div>
+
+            <pre>
+                <code class="language-javascript">
+// Classic Slider
+document.addEventListener('DOMContentLoaded', function () {
+    new uaSlider(document.querySelector("#slider_1"), {});
+});</code>
+            </pre>
         </div>
 
-        <!-- <div id="slider_2">
-            <div class="item">
-                <div class="image">
-                    <div style="background: url('img/img_1.jpg')"></div>
+        <hr>
+
+        <div class="slider-pagination">
+            <h3>Slider With Pagination</h3>
+
+            <div id="slider_2">
+                <div class="item">
+                    <div class="image">
+                        <div style="background: url('img/img_1.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 1</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
                 </div>
-                <div class="body">
-                    <div class="title">Titre 1</div>
-                    <div class="description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                <div class="item">
+                    <div class="image">
+                        <div style="background: url('img/img_2.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 2</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="image">
+                        <div style="background: url('img/img_1.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 3</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="image">
+                        <div style="background: url('img/img_2.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 4</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="image">
+                        <div style="background: url('img/img_1.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 5</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="item">
-                <div class="image">
-                    <div style="background: url('img/img_2.jpg')"></div>
-                </div>
-                <div class="body">
-                    <div class="title">Titre 2</div>
-                    <div class="description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="image">
-                    <div style="background: url('img/img_1.jpg')"></div>
-                </div>
-                <div class="body">
-                    <div class="title">Titre 3</div>
-                    <div class="description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="image">
-                    <div style="background: url('img/img_2.jpg')"></div>
-                </div>
-                <div class="body">
-                    <div class="title">Titre 4</div>
-                    <div class="description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="image">
-                    <div style="background: url('img/img_1.jpg')"></div>
-                </div>
-                <div class="body">
-                    <div class="title">Titre 5</div>
-                    <div class="description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </div>
-                </div>
-            </div>
+
+            <pre>
+                <code class="language-javascript">
+// Classic Slider With Pagination
+document.addEventListener('DOMContentLoaded', function () {
+    new uaSlider(document.querySelector("#slider_2"), {
+        pagination: true
+    });
+});</code>
+            </pre>
         </div>
 
-        <div id="slider_3">
-            <div class="item">
-                <div class="image">
-                    <div style="background: url('img/img_1.jpg')"></div>
+        <hr>
+
+        <div class="slider-without-navigation">
+            <h3>Slider Without Navigation But With Pagination</h3>
+
+            <div id="slider_3">
+                <div class="item">
+                    <div class="image">
+                        <div style="background: url('img/img_1.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 1</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
                 </div>
-                <div class="body">
-                    <div class="title">Titre 1</div>
-                    <div class="description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                <div class="item">
+                    <div class="image">
+                        <div style="background: url('img/img_2.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 2</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="image">
+                        <div style="background: url('img/img_1.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 3</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="image">
+                        <div style="background: url('img/img_2.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 4</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="image">
+                        <div style="background: url('img/img_1.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 5</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="item">
-                <div class="image">
-                    <div style="background: url('img/img_2.jpg')"></div>
-                </div>
-                <div class="body">
-                    <div class="title">Titre 2</div>
-                    <div class="description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="image">
-                    <div style="background: url('img/img_1.jpg')"></div>
-                </div>
-                <div class="body">
-                    <div class="title">Titre 3</div>
-                    <div class="description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="image">
-                    <div style="background: url('img/img_2.jpg')"></div>
-                </div>
-                <div class="body">
-                    <div class="title">Titre 4</div>
-                    <div class="description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="image">
-                    <div style="background: url('img/img_1.jpg')"></div>
-                </div>
-                <div class="body">
-                    <div class="title">Titre 5</div>
-                    <div class="description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </div>
-                </div>
-            </div>
+
+            <pre>
+                <code class="language-javascript">
+
+// Slider Without Navigation But With Pagination
+document.addEventListener('DOMContentLoaded', function () {
+    new uaSlider(document.querySelector("#slider_3"), {
+        navigation: false,
+        pagination: true
+    });
+});</code>
+            </pre>
         </div>
 
-        <div id="slider_4">
-            <div class="item">
-                <div class="image">
-                    <div style="background: url('img/img_1.jpg')"></div>
-                </div>
-                <div class="body">
-                    <div class="title">Titre 1</div>
-                    <div class="description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="image">
-                    <div style="background: url('img/img_2.jpg')"></div>
-                </div>
-                <div class="body">
-                    <div class="title">Titre 2</div>
-                    <div class="description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="image">
-                    <div style="background: url('img/img_1.jpg')"></div>
-                </div>
-                <div class="body">
-                    <div class="title">Titre 3</div>
-                    <div class="description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="image">
-                    <div style="background: url('img/img_2.jpg')"></div>
-                </div>
-                <div class="body">
-                    <div class="title">Titre 4</div>
-                    <div class="description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="image">
-                    <div style="background: url('img/img_1.jpg')"></div>
-                </div>
-                <div class="body">
-                    <div class="title">Titre 5</div>
-                    <div class="description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="image">
-                    <div style="background: url('img/img_2.jpg')"></div>
-                </div>
-                <div class="body">
-                    <div class="title">Titre 6</div>
-                    <div class="description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="image">
-                    <div style="background: url('img/img_1.jpg')"></div>
-                </div>
-                <div class="body">
-                    <div class="title">Titre 7</div>
-                    <div class="description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="image">
-                    <div style="background: url('img/img_2.jpg')"></div>
-                </div>
-                <div class="body">
-                    <div class="title">Titre 8</div>
-                    <div class="description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="image">
-                    <div style="background: url('img/img_1.jpg')"></div>
-                </div>
-                <div class="body">
-                    <div class="title">Titre 9</div>
-                    <div class="description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
+        <hr>
 
-        <div id="slider_5">
-            <div class="image-link" data-thumbnail="http://dev.nicoll.fr/sites/default/files/styles/58_45/public/nice-2_0.jpg?itok=uDHVwIv0">
-                <img src="http://dev.nicoll.fr/sites/default/files/nice-2_0.jpg" width="1200" height="660" alt="stade de Nice Akasison">
+        <div class="multiple-slider">
+            <h3>Multiple Slider</h3>
+
+            <div id="slider_4">
+                <div class="item">
+                    <div class="image">
+                        <div style="background: url('img/img_1.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 1</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="image">
+                        <div style="background: url('img/img_2.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 2</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="image">
+                        <div style="background: url('img/img_1.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 3</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="image">
+                        <div style="background: url('img/img_2.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 4</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="image">
+                        <div style="background: url('img/img_1.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 5</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="image-link" data-thumbnail="http://dev.nicoll.fr/sites/default/files/styles/58_45/public/nice-5.jpg?itok=oRDDC3Lj">
-                <img src="http://dev.nicoll.fr/sites/default/files/nice-5.jpg" width="1200" height="660" alt="stade de Nice Akasison">
-            </div>
-            <div class="image-link" data-thumbnail="http://dev.nicoll.fr/sites/default/files/styles/58_45/public/nice-4.jpg?itok=CC4oVCzR">
-                <img src="http://dev.nicoll.fr/sites/default/files/nice-4.jpg" width="1200" height="660" alt="stade de Nice Akasison">
-            </div>
-            <div class="image-link" data-thumbnail="http://dev.nicoll.fr/sites/default/files/styles/58_45/public/nice-3.jpg?itok=7QadhWQ_">
-                <img src="http://dev.nicoll.fr/sites/default/files/nice-3.jpg" width="1200" height="660" alt="stade de Nice Akasison">
-            </div>
-            <div class="image-link" data-thumbnail="http://dev.nicoll.fr/sites/default/files/styles/58_45/public/nice-1.jpg?itok=HXo659xX">
-                <img src="http://dev.nicoll.fr/sites/default/files/nice-1.jpg" width="1200" height="660" alt="stade de Nice Akasison">
-            </div>
+
+            <pre>
+                <code class="language-javascript">
+// Multiple Slider
+document.addEventListener('DOMContentLoaded', function () {
+    new uaSlider(document.querySelector("#slider_4"), {
+        navigation: true,
+        pagination: true,
+        slidesVisible: 3,
+        slidesToScroll: 1
+    });
+});</code>
+            </pre>
         </div>
 
-        <script type="text/javascript" src="js/uaSlider.js?reload=1"></script>
-        <script type="text/javascript" src="js/main.js"></script>
+        <hr>
+
+        <div class="multiple-slider-infinite">
+            <h3>Multiple Slider Infinite</h3>
+
+            <div id="slider_5">
+                <div class="item">
+                    <div class="image">
+                        <div style="background: url('img/img_1.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 1</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="image">
+                        <div style="background: url('img/img_2.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 2</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="image">
+                        <div style="background: url('img/img_1.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 3</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="image">
+                        <div style="background: url('img/img_2.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 4</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="image">
+                        <div style="background: url('img/img_1.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 5</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <pre>
+                <code class="language-javascript">
+// Multiple Slider Infinite
+document.addEventListener('DOMContentLoaded', function () {
+    new uaSlider(document.querySelector("#slider_5"), {
+        navigation: true,
+        pagination: true,
+        infinite: true,
+        slidesVisible: 3,
+        slidesToScroll: 1
+    });
+});</code>
+            </pre>
+        </div>
+
+        <hr>
+
+        <div class="multiple-slider-one-fix-element">
+            <h3>Multiple Slider With One Fix Element</h3>
+
+            <div id="slider_6">
+                <div class="item">
+                    <div class="image">
+                        <div style="background: url('img/img_1.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Fix Item</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="image">
+                        <div style="background: url('img/img_2.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 2</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="image">
+                        <div style="background: url('img/img_1.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 3</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="image">
+                        <div style="background: url('img/img_2.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 4</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="image">
+                        <div style="background: url('img/img_1.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 5</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <pre>
+                <code class="language-javascript">
+// Multiple Slider With One Fix Element
+document.addEventListener('DOMContentLoaded', function () {
+    new uaSlider(document.querySelector("#slider_6"), {
+        navigation: true,
+        pagination: true,
+        infinite: true,
+        slidesVisible: 3,
+        slidesToScroll: 1,
+        slideFix: 1
+    });
+});</code>
+            </pre>
+        </div>
+
+        <hr>
+
+        <div class="autoplay-slider">
+            <h3>Autoplay Slider</h3>
+
+            <div id="slider_7">
+                <div class="item">
+                    <div class="image">
+                        <div style="background: url('img/img_1.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 1</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="image">
+                        <div style="background: url('img/img_2.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 2</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="image">
+                        <div style="background: url('img/img_1.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 3</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="image">
+                        <div style="background: url('img/img_2.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 4</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="image">
+                        <div style="background: url('img/img_1.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 5</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <pre>
+                <code class="language-javascript">
+// Autoplay Slider
+document.addEventListener('DOMContentLoaded', function () {
+    new uaSlider(document.querySelector("#slider_7"), {
+        navigation: true,
+        pagination: true,
+        infinite: true,
+        slidesVisible: 3,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 5000 // 5000 = 5s
+    });
+});</code>
+            </pre>
+        </div>
+
+        <hr>
+
+        <div class="slider-thumbnail-navigation">
+            <h3>Slider Thumbnail Navigation</h3>
+
+            <div id="slider_8">
+                <div class="item" data-thumbnail="./img/t1.png">
+                    <div class="image">
+                        <div style="background: url('img/img_1.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 1</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
+                </div>
+                <div class="item" data-thumbnail="./img/t2.png">
+                    <div class="image">
+                        <div style="background: url('img/img_2.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 2</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
+                </div>
+                <div class="item" data-thumbnail="./img/t3.png">
+                    <div class="image">
+                        <div style="background: url('img/img_1.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 3</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
+                </div>
+                <div class="item" data-thumbnail="./img/t4.png">
+                    <div class="image">
+                        <div style="background: url('img/img_2.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 4</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
+                </div>
+                <div class="item" data-thumbnail="./img/t5.png">
+                    <div class="image">
+                        <div style="background: url('img/img_1.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 5</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <pre>
+                <code class="language-javascript">
+document.addEventListener('DOMContentLoaded', function () {
+    new uaSlider(document.querySelector("#slider_8"), {
+        navigation: false,
+        pagination: false,
+        infinite: true,
+        navigationThumbnail: true,
+        slidesVisible: 1,
+        slidesToScroll: 1
+    });
+});</code>
+            </pre>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="js/uaSlider.js?reload=1"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/prism.min.js"></script>
 </body>
 
 </html>

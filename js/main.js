@@ -1,44 +1,77 @@
+// Classic Slider
 document.addEventListener('DOMContentLoaded', function () {
-    new uaSlider(document.querySelector("#slider_1"), {
-        slidesVisible: 3,
-        slidesToScroll: 1,
-        navigation: true,
+    new uaSlider(document.querySelector("#slider_1"), {});
+});
+
+// Slider With Pagination
+document.addEventListener('DOMContentLoaded', function () {
+    new uaSlider(document.querySelector("#slider_2"), {
         pagination: true
     });
 });
 
-// document.addEventListener('DOMContentLoaded', function () {
-//     new uaSlider(document.querySelector("#slider_2"), {
-//         slidesToScroll: 1,
-//         slidesVisible: 3,
-//         pagination: true
-//     });
-// });
+// Slider Without Navigation But With Pagination
+document.addEventListener('DOMContentLoaded', function () {
+    new uaSlider(document.querySelector("#slider_3"), {
+        navigation: false,
+        pagination: true
+    });
+});
 
-// document.addEventListener('DOMContentLoaded', function () {
-//     new uaSlider(document.querySelector("#slider_3"), {
-//         slidesToScroll: 1,
-//         slidesVisible: 3,
-//         infinite: true,
-//         pagination: true
-//     });
-// });
+// Multiple Slider
+document.addEventListener('DOMContentLoaded', function () {
+    new uaSlider(document.querySelector("#slider_4"), {
+        navigation: true,
+        pagination: true,
+        slidesVisible: 3,
+        slidesToScroll: 1
+    });
+});
 
-// document.addEventListener('DOMContentLoaded', function () {
-//     new uaSlider(document.querySelector("#slider_4"), {
-//         slidesToScroll: 1,
-//         slidesVisible: 6,
-//         infinite: true,
-//         // pagination: true,
-//         autoplay: true,
-//         slideFix: 1
-//     });
-// });
-
+// Multiple Slider Infinite
 document.addEventListener('DOMContentLoaded', function () {
     new uaSlider(document.querySelector("#slider_5"), {
         navigation: true,
         pagination: true,
-        navigationThumbnail: true
+        infinite: true,
+        slidesVisible: 3,
+        slidesToScroll: 1
+    });
+});
+
+// Multiple Slider With One Fix Element
+document.addEventListener('DOMContentLoaded', function () {
+    new uaSlider(document.querySelector("#slider_6"), {
+        navigation: true,
+        pagination: true,
+        infinite: true,
+        slidesVisible: 3,
+        slidesToScroll: 1,
+        slideFix: 1
+    });
+});
+
+// Autoplay Slider
+document.addEventListener('DOMContentLoaded', function () {
+    new uaSlider(document.querySelector("#slider_7"), {
+        navigation: true,
+        pagination: true,
+        infinite: true,
+        slidesVisible: 3,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 5000 // 5000 = 5s
+    });
+});
+
+// Slider Thumbnail Navigation
+document.addEventListener('DOMContentLoaded', function () {
+    new uaSlider(document.querySelector("#slider_8"), {
+        navigation: false,
+        pagination: false,
+        infinite: true,
+        navigationThumbnail: true,
+        slidesVisible: 1,
+        slidesToScroll: 1
     });
 });
