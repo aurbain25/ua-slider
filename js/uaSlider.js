@@ -1,4 +1,4 @@
-class uaSlider {
+class UaSlider {
 
     /**
      * This call type is called moveCallback
@@ -518,3 +518,7 @@ class uaSlider {
         return this.isMobile ? 1 : this.options.slidesVisible;
     }
 }
+
+Element.prototype.uaSlider = function (object = {}) {
+    return new UaSlider(this, object);
+};

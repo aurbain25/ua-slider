@@ -1,6 +1,10 @@
 // Classic Slider
-document.addEventListener('DOMContentLoaded', function () {
+/*document.addEventListener('DOMContentLoaded', function () {
     new uaSlider(document.querySelector("#slider_1"), {});
+});*/
+
+document.querySelector("#slider_1").uaSlider({
+    navigation: true
 });
 
 // Slider With Pagination
