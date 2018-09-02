@@ -81,8 +81,9 @@ html, body{
 }
 
 .ua_slider_button {
-    background-color: #3232321a;
+    /*background-color: #3232321a;*/
     /*background-color: #cccccc;*/
+    background-color: #ffffff;
     width: 10px;
     height: 10px;
 
@@ -106,4 +107,13 @@ html, body{
 .ua_slider_fix {
     position: absolute;
     top: 0;
+}
+
+.ua_slider_thumbnails img {
+    max-width: 50px;
+    margin-left: 5px;
+}
+
+.ua_slider_thumbnails img:nth-child(1) {
+    margin-left: 0;
 }

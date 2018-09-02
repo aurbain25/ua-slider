@@ -4,9 +4,9 @@
 
 | Name | State |
 | ---- | ----- |
-| Item Fix (First or Last Visible Slide) | Finish |
+| Item Fix | Finish |
 | Navigation | Finish |
+| Navigation with Thumbnail | Finish |
 | Pagination | Finish |
-| Pagination with Thumbnail | In Progress |
 | Automatic Scrolling | Finish |
 | Touch Scrolling | In Progress |

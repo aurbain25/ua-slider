@@ -59,13 +59,13 @@ class uaSlider {
         this.currentItem = 0;
 
         // Init offset
-        this.offset = this.options.slidesVisible + this.options.slidesToScroll;
+        this.offset = 0;
 
         // Init slideFix
         this.slideFix = undefined;
 
         // Init autoplay
-        this.autoplay = undefined;
+        this.autoplay = true;
 
         // Add slider to element
         this.element.appendChild(this.root);
@@ -91,7 +91,8 @@ class uaSlider {
 
         // Add clone items before and after items to init infinite loop
         if (this.options.infinite) {
-            let isContructInfinite = true;
+            this.offset = this.options.slidesVisible + this.options.slidesToScroll;
+            let isConstructInfinite = true;
 
             if (this.offset > this.children.length) {
                 console.warn(
@@ -101,10 +102,10 @@ class uaSlider {
                     "offset > nbChildren : " + this.offset + " > " + this.children.length +
                     ")"
                 );
-                isContructInfinite = false;
+                isConstructInfinite = false;
             }
 
-            if(isContructInfinite) {
+            if(isConstructInfinite) {
                 this.items = [
                     ...this.items.slice(this.items.length - this.offset).map(item => item.cloneNode(true)),
                     ...this.items,
@@ -145,13 +146,13 @@ class uaSlider {
 
         if (this.options.autoplay && this.offset < this.children.length) {
             this.root.addEventListener('mouseover', () => {
+                this.autoplay = false;
                 // console.log('AURDEBUG', "autoplay / mouseover", this.element.id, this.autoplay);
-                this.autoplay = window.clearInterval(this.autoplay);
             });
 
             this.root.addEventListener('mouseout', () => {
+                this.autoplay = true;
                 // console.log('AURDEBUG', "autoplay / mouseout", this.element.id, this.autoplay);
-                this.initAutoPlay();
             });
         }
 
@@ -189,17 +190,19 @@ class uaSlider {
      */
     initSlideFix() {
         if(this.offset < this.children.length) {
-            this.slideFix = this.items[this.options.slideFix - 1];
+            this.slideFix = this.items[this.options.slideFix - 1].cloneNode(true);
 
             let newList = [];
 
-            this.items.forEach((item, key) => {
-                if (key !== this.options.slideFix - 1) {
-                    newList.push(item);
-                }
-            });
+            if(this.options.infinite) {
+                this.items.forEach((item, key) => {
+                    if (key !== this.options.slideFix - 1) {
+                        newList.push(item);
+                    }
+                });
 
-            this.items = newList;
+                this.items = newList;
+            }
 
             this.slideFix.classList.add("ua_slider_fix");
 
@@ -212,8 +215,10 @@ class uaSlider {
      */
     initAutoPlay() {
         if(this.offset < this.children.length) {
-            this.autoplay = window.setInterval(() => {
-                this.next();
+            window.setInterval(() => {
+                if(this.autoplay) {
+                    this.next();
+                }
             }, this.options.autoplaySpeed);
         }
     }
@@ -278,10 +283,12 @@ class uaSlider {
         for(let i in this.children) {
             let child = this.children[i];
 
+            let itemPosition = parseInt(i) + this.offset;
+
             let thumbnail = this.createImg(child.dataset.thumbnail);
             thumbnailsContainer.appendChild(thumbnail);
 
-            thumbnail.addEventListener('click', this.goToItem.bind(this, i, false));
+            thumbnail.addEventListener('click', this.goToItem.bind(this, itemPosition, false));
         }
     }
 
@@ -303,6 +310,10 @@ class uaSlider {
             calcNbButton = ((this.items.length - this.offset * 2) - this.slidesVisible) / this.slidesToScroll;
         }
 
+        if(this.options.slideFix !== 0) {
+            calcNbButton = calcNbButton + 1;
+        }
+
         let nbButtons = Math.floor(calcNbButton);
 
         if (calcNbButton > nbButtons) {
@@ -315,7 +326,13 @@ class uaSlider {
 
         for (let i = 0; i <= nbButtons; i++) {
             let button = this.createDivWithClass('ua_slider_button');
-            button.addEventListener('click', () => this.goToItem(i + this.offset));
+            let itemPosition = i + this.offset;
+
+            if(this.options.slideFix !== 0 && this.options.infinite) {
+                itemPosition = itemPosition - 1;
+            }
+
+            button.addEventListener('click', () => this.goToItem(itemPosition));
 
             this.pagination.appendChild(button);
             buttons.push(button);
@@ -323,7 +340,14 @@ class uaSlider {
 
         for (let i = 0; i < (this.items.length - this.offset * 2); i++) {
             let button = this.createDivWithClass('ua_slider_button');
-            button.addEventListener('click', () => this.goToItem(i));
+
+            let indexButton = i;
+
+            if(this.options.slideFix !== 0 && this.options.infinite) {
+                indexButton = indexButton + 1;
+            }
+
+            button.addEventListener('click', () => this.goToItem(indexButton));
 
             this.mobilePagination.appendChild(button);
             mobileButtons.push(button);
@@ -340,6 +364,14 @@ class uaSlider {
             let indexButton = Math.floor(calcIndexButton);
 
             if (calcIndexButton > indexButton && this.offset === 0) {
+                indexButton = indexButton + 1;
+            }
+
+            if(this.options.slideFix !== 0 && indexButton === (count - 1)) {
+                indexButton = indexButton - count;
+            }
+
+            if(this.options.slideFix !== 0 && this.options.infinite) {
                 indexButton = indexButton + 1;
             }
 
