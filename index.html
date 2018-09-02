@@ -75,6 +75,17 @@
                         </div>
                     </div>
                 </div>
+                <div class="item">
+                    <div class="image">
+                        <div style="background: url('img/img_1.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 6</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <pre>
@@ -292,6 +303,50 @@ document.addEventListener('DOMContentLoaded', function () {
                     </div>
                     <div class="body">
                         <div class="title">Titre 5</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="image">
+                        <div style="background: url('img/img_1.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 6</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="image">
+                        <div style="background: url('img/img_1.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 7</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="image">
+                        <div style="background: url('img/img_1.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 8</div>
+                        <div class="description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="image">
+                        <div style="background: url('img/img_1.jpg')"></div>
+                    </div>
+                    <div class="body">
+                        <div class="title">Titre 9</div>
                         <div class="description">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         </div>
@@ -553,7 +608,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <hr>
 
         <div class="slider-thumbnail-navigation">
-            <h3>Slider Thumbnail Navigation</h3>
+            <h3>Slider Thumbnail Navigation And Touch Deactivate</h3>
 
             <div id="slider_8">
                 <div class="item" data-thumbnail="./img/t1.png">
@@ -615,11 +670,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
             <pre>
                 <code class="language-javascript">
+// Slider Thumbnail Navigation And Touch Deactivate
 document.addEventListener('DOMContentLoaded', function () {
-    new uaSlider(document.querySelector("#slider_8"), {
+    new UaSlider(document.querySelector("#slider_8"), {
         navigation: false,
         pagination: false,
         infinite: true,
+        touchActive: false,
         navigationThumbnail: true,
         slidesVisible: 1,
         slidesToScroll: 1

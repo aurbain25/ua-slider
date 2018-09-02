@@ -50,7 +50,7 @@ h1.title {
 }
 
 .main_container {
-    max-width: 550px;
+    max-width: 95%;
     margin: auto;
     display: block;
 }

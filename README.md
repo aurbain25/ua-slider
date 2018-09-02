@@ -1,6 +1,6 @@
 # UA Slider
 
-### Functionnality
+### Functionality
 
 | Name | State |
 | ---- | ----- |

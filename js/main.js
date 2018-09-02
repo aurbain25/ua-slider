@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
     new UaSlider(document.querySelector("#slider_4"), {
         navigation: true,
         pagination: true,
-        slidesVisible: 3,
+        slidesVisible: 6,
         slidesToScroll: 1
     });
 });
@@ -68,12 +68,13 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-// Slider Thumbnail Navigation
+// Slider Thumbnail Navigation And Touch Deactivate
 document.addEventListener('DOMContentLoaded', function () {
     new UaSlider(document.querySelector("#slider_8"), {
         navigation: false,
         pagination: false,
         infinite: true,
+        touchActive: false,
         navigationThumbnail: true,
         slidesVisible: 1,
         slidesToScroll: 1
