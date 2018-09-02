@@ -156,6 +156,25 @@ class UaSlider {
             });
         }
 
+        // Manage touch swipe
+        let sliderManager = new Hammer.Manager(this.root);
+        sliderManager.add( new Hammer.Pan({ threshold: 0, pointers: 0 }) );
+        sliderManager.on('pan', (e) => {
+            if(e.isFinal) {
+                let percentage = 100 / this.items.length * e.deltaX / window.innerWidth;
+                let transformPercentage = percentage - 100 / this.items.length * this.currentItem; // NEW
+                this.container.style.transform = 'translate3d(' + transformPercentage + '%, 0, 0)';
+
+                if (percentage < 0) {
+                    this.goToItem(this.currentItem + 1);
+                } else if (percentage > 0) {
+                    this.goToItem(this.currentItem - 1);
+                } else {
+                    this.goToItem(this.currentItem);
+                }
+            }
+        });
+
         // Call Methods
         this.init();
     }
