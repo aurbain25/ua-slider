@@ -1,0 +1,27 @@
+{
+  "name": "ua-slider",
+  "version": "2.0.0",
+  "description": "Responsive touch slider with possibility to fix one item",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aurbain25/ua-slider.git"
+  },
+  "keywords": [
+    "ua-slider",
+    "slider",
+    "touch",
+    "mobile",
+    "carousel",
+    "fix-element",
+    "responsive"
+  ],
+  "author": "Alexandre URBAIN",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aurbain25/ua-slider/issues"
+  },
+  "homepage": "https://github.com/aurbain25/ua-slider#readme"
+}
