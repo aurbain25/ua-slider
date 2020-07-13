@@ -1,4 +1,4 @@
-class uaSlider {
+class UaSlider {
 
     /**
      * This call type is called moveCallback
@@ -20,6 +20,7 @@ class uaSlider {
      * @param {number}      options.autoplaySpeed       Speed autoplay slider
      * @param {number}      options.slideSpace          Space between two slide
      * @param {number}      options.slideFix            Location of the fix slide (first or last slide visible)
+     * @param {boolean}     options.touchActive         Active touch slider
      */
     constructor(element, options = {}) {
         this.element = element;
@@ -33,15 +34,22 @@ class uaSlider {
             autoplay: false,
             autoplaySpeed: 5000, // 5000 = 5 seconds
             slideSpace: 5,
-            slideFix: 0
+            slideFix: 0,
+            touchActive: true
         }, options);
+
+        // Retrieve element's children
+        this.children = [].slice.call(element.children);
+
+        if(this.options.slidesVisible >= this.children.length) {
+            this.options.slidesVisible = this.children.length;
+            this.options.navigation = false;
+            this.options.pagination = false;
+        }
 
         if (this.options.slidesVisible < this.options.slidesToScroll) {
             this.options.slidesToScroll = this.options.slidesVisible;
         }
-
-        // Retrieve element's children
-        this.children = [].slice.call(element.children);
 
         // Construct slider
         this.root = this.createDivWithClass("ua_slider");
@@ -124,19 +132,6 @@ class uaSlider {
         // Add final item's list in the container
         this.items.forEach(item => this.container.appendChild(item));
 
-        // Responsive mode
-        this.isMobile = false;
-
-        // Accessibility
-        // this.root.setAttribute('tabindex', 0);
-        // this.root.addEventListener('keyup', e => {
-        //     if (e.key === 'ArrowRight' || e.key === "Right") {
-        //         this.next();
-        //     } else if (e.key === 'ArrowLeft' || e.key === "Left") {
-        //         this.prev();
-        //     }
-        // });
-
         // Events
         window.addEventListener('resize', this.onWindowResize.bind(this));
 
@@ -153,6 +148,26 @@ class uaSlider {
             this.root.addEventListener('mouseout', () => {
                 this.autoplay = true;
                 // console.log('AURDEBUG', "autoplay / mouseout", this.element.id, this.autoplay);
+            });
+        }
+
+        // Manage touch swipe
+        if(this.options.touchActive) {
+            let sliderManager = new Hammer.Manager(this.root);
+            sliderManager.add(new Hammer.Pan({threshold: 0, pointers: 0}));
+            sliderManager.on('pan', (e) => {
+                if (e.isFinal) {
+                    if (e.additionalEvent === "panleft") {
+                        // console.log('next');
+                        this.goToItem(this.currentItem + this.options.slidesToScroll);
+                    } else if (e.additionalEvent === "panright") {
+                        // console.log('previous');
+                        this.goToItem(this.currentItem - this.options.slidesToScroll);
+                    } else {
+                        // console.log('current');
+                        this.goToItem(this.currentItem);
+                    }
+                }
             });
         }
 
@@ -182,7 +197,6 @@ class uaSlider {
         }
 
         this.setStyle();
-        this.onWindowResize();
     }
 
     /**
@@ -245,16 +259,6 @@ class uaSlider {
             item.style.paddingRight = paddingRight + "px";
             item.style.width = "calc(" + ((100 / this.slidesVisible) / ratio) + "%" + " - " + paddingRight + "px)";
         });
-
-        if (this.options.pagination && this.pagination) {
-            if (this.isMobile) {
-                this.pagination.style.display = "none";
-                this.mobilePagination.style.display = "block";
-            } else {
-                this.pagination.style.display = "block";
-                this.mobilePagination.style.display = "none";
-            }
-        }
     }
 
     /**
@@ -297,10 +301,8 @@ class uaSlider {
      */
     createPagination() {
         this.pagination = this.createDivWithClass('ua_slider_pagination');
-        this.mobilePagination = this.createDivWithClass('ua_slider_pagination_mobile');
 
         let buttons = [];
-        let mobileButtons = [];
 
         let calcNbButton = 0;
 
@@ -338,26 +340,7 @@ class uaSlider {
             buttons.push(button);
         }
 
-        for (let i = 0; i < (this.items.length - this.offset * 2); i++) {
-            let button = this.createDivWithClass('ua_slider_button');
-
-            let indexButton = i;
-
-            if(this.options.slideFix !== 0 && this.options.infinite) {
-                indexButton = indexButton + 1;
-            }
-
-            button.addEventListener('click', () => this.goToItem(indexButton));
-
-            this.mobilePagination.appendChild(button);
-            mobileButtons.push(button);
-        }
-
         this.onMove(index => {
-            if (this.options.infinite && this.isMobile) {
-                index = index - this.offset;
-            }
-
             let count = this.items.length - this.offset * 2;
 
             let calcIndexButton = ((index - this.offset) % count) / this.slidesToScroll;
@@ -376,22 +359,15 @@ class uaSlider {
             }
 
             let activeButton = buttons[indexButton];
-            let mobileActiveButton = mobileButtons[index];
 
             buttons.forEach(button => button.classList.remove('active'));
-            mobileButtons.forEach(button => button.classList.remove('active'));
 
             if (activeButton) {
                 activeButton.classList.add('active');
             }
-
-            if (mobileActiveButton) {
-                mobileActiveButton.classList.add('active');
-            }
         });
 
         this.root.appendChild(this.pagination);
-        this.root.appendChild(this.mobilePagination);
     }
 
     /**
@@ -465,12 +441,11 @@ class uaSlider {
     }
 
     onWindowResize() {
-        let mobile = window.innerWidth < 800 || window.orientation !== undefined;
+        this.setStyle();
 
-        if (mobile !== this.isMobile) {
-            this.isMobile = mobile;
-
-            this.setStyle();
+        if(this.pagination) {
+            this.pagination.remove();
+            this.createPagination();
         }
     }
 
@@ -508,13 +483,46 @@ class uaSlider {
      * @returns {number}
      */
     get slidesToScroll() {
-        return this.isMobile ? 1 : this.options.slidesToScroll;
+        let slideToScroll = this.options.slidesToScroll;
+        if(this.windowWith <= 900) {
+            slideToScroll = 1;
+        }
+
+        return slideToScroll;
     }
 
     /**
      * @returns {number}
      */
     get slidesVisible() {
-        return this.isMobile ? 1 : this.options.slidesVisible;
+        let slidesVisible = this.options.slidesVisible;
+
+        if(this.windowWith <= 400 && this.options.slidesVisible >= 1) {
+            slidesVisible = 1;
+        } else if(this.windowWith <= 600 && this.options.slidesVisible >= 2) {
+            slidesVisible = 2;
+        } else if(this.windowWith <= 900 && this.options.slidesVisible >= 4) {
+            slidesVisible = 4;
+        }
+
+        // Remove slide
+        if(this.slideFix) {
+            if (slidesVisible === 1) {
+                this.slideFix.style.display = "none";
+                // console.log(this.slideFix);
+            } else {
+                this.slideFix.style.display = "block";
+            }
+        }
+
+        return slidesVisible;
+    }
+
+    get windowWith() {
+        return window.screen.availWidth < window.innerWidth ? window.screen.availWidth : window.innerWidth;
     }
 }
+
+Element.prototype.uaSlider = function (object = {}) {
+    return new UaSlider(this, object);
+};

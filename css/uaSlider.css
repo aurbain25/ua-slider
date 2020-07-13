@@ -71,13 +71,12 @@ html, body{
 /*-------------PAGINATION------------*/
 /*-----------------------------------*/
 
-.ua_slider_pagination, .ua_slider_pagination_mobile {
+.ua_slider_pagination {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
     text-align: center;
-    display: none;
 }
 
 .ua_slider_button {

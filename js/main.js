@@ -1,18 +1,22 @@
 // Classic Slider
-document.addEventListener('DOMContentLoaded', function () {
-    new uaSlider(document.querySelector("#slider_1"), {});
+/*document.addEventListener('DOMContentLoaded', function () {
+    new UaSlider(document.querySelector("#slider_1"), {});
+});*/
+
+document.querySelector("#slider_1").uaSlider({
+    navigation: true
 });
 
 // Slider With Pagination
 document.addEventListener('DOMContentLoaded', function () {
-    new uaSlider(document.querySelector("#slider_2"), {
+    new UaSlider(document.querySelector("#slider_2"), {
         pagination: true
     });
 });
 
 // Slider Without Navigation But With Pagination
 document.addEventListener('DOMContentLoaded', function () {
-    new uaSlider(document.querySelector("#slider_3"), {
+    new UaSlider(document.querySelector("#slider_3"), {
         navigation: false,
         pagination: true
     });
@@ -20,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Multiple Slider
 document.addEventListener('DOMContentLoaded', function () {
-    new uaSlider(document.querySelector("#slider_4"), {
+    new UaSlider(document.querySelector("#slider_4"), {
         navigation: true,
         pagination: true,
         slidesVisible: 3,
@@ -30,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Multiple Slider Infinite
 document.addEventListener('DOMContentLoaded', function () {
-    new uaSlider(document.querySelector("#slider_5"), {
+    new UaSlider(document.querySelector("#slider_5"), {
         navigation: true,
         pagination: true,
         infinite: true,
@@ -41,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Multiple Slider With One Fix Element
 document.addEventListener('DOMContentLoaded', function () {
-    new uaSlider(document.querySelector("#slider_6"), {
+    new UaSlider(document.querySelector("#slider_6"), {
         navigation: true,
         pagination: true,
         infinite: true,
@@ -53,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Autoplay Slider
 document.addEventListener('DOMContentLoaded', function () {
-    new uaSlider(document.querySelector("#slider_7"), {
+    new UaSlider(document.querySelector("#slider_7"), {
         navigation: true,
         pagination: true,
         infinite: true,
@@ -64,12 +68,13 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-// Slider Thumbnail Navigation
+// Slider Thumbnail Navigation And Touch Deactivate
 document.addEventListener('DOMContentLoaded', function () {
-    new uaSlider(document.querySelector("#slider_8"), {
+    new UaSlider(document.querySelector("#slider_8"), {
         navigation: false,
         pagination: false,
         infinite: true,
+        touchActive: false,
         navigationThumbnail: true,
         slidesVisible: 1,
         slidesToScroll: 1

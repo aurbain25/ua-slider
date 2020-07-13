@@ -1,6 +1,6 @@
 # UA Slider
 
-### Functionnality
+### Functionality
 
 | Name | State |
 | ---- | ----- |
@@ -9,4 +9,4 @@
 | Navigation with Thumbnail | Finish |
 | Pagination | Finish |
 | Automatic Scrolling | Finish |
-| Touch Scrolling | In Progress |
+| Touch Scrolling | Finish |

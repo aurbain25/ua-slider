@@ -467,15 +467,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
             <pre>
                 <code class="language-javascript">
-// Multiple Slider With One Fix Element
+// Multiple Slider
 document.addEventListener('DOMContentLoaded', function () {
     new uaSlider(document.querySelector("#slider_6"), {
         navigation: true,
         pagination: true,
-        infinite: true,
         slidesVisible: 3,
-        slidesToScroll: 1,
-        slideFix: 1
+        slidesToScroll: 1
     });
 });</code>
             </pre>
@@ -511,7 +509,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
                 <div class="item">
                     <div class="image">
-                        <div style="background: url('img/img_3.png')"></div>
+                        <div style="background: url('img/img_1.png')"></div>
                     </div>
                     <div class="body">
                         <div class="title">Titre 3</div>
@@ -522,7 +520,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
                 <div class="item">
                     <div class="image">
-                        <div style="background: url('img/img_4.png')"></div>
+                        <div style="background: url('img/img_2.png')"></div>
                     </div>
                     <div class="body">
                         <div class="title">Titre 4</div>
@@ -533,7 +531,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 </div>
                 <div class="item">
                     <div class="image">
-                        <div style="background: url('img/img_5.png')"></div>
+                        <div style="background: url('img/img_1.png')"></div>
                     </div>
                     <div class="body">
                         <div class="title">Titre 5</div>
@@ -564,7 +562,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <hr>
 
         <div class="slider-thumbnail-navigation">
-            <h3>Slider Thumbnail Navigation</h3>
+            <h3>Slider Thumbnail Navigation And Touch Deactivate</h3>
 
             <div id="slider_8">
                 <div class="item" data-thumbnail="./img/t1.png">
@@ -640,7 +638,8 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>
     </div>
 
-    <script type="text/javascript" src="js/uaSlider.js?reload=1"></script>
+    <script type="text/javascript" src="js/hammer.min.js"></script>
+    <script type="text/javascript" src="js/uaSlider.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/prism.min.js"></script>
 </body>
