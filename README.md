@@ -27,19 +27,14 @@ UA Slider is a free slider which can use as a simple responsive slider or with a
 | autoplaySpeed | Speed autoplay slider |
 | slideSpace | Space between two slide |
 | slideFix | Location of the fix slide (first or last slide visible) |
-
-**TODO :**
-
-| Name | Description |
-| ---- | ----- |
-| Touch Scrolling | Move slider on touch event |
+| touchActive | Active touch slider |
 
 ## Quick start
 
 ### Install
 
 This package can be install with :
-- NPM : npm install aurbain25/ua-slider
+- NPM : `npm install aurbain25/ua-slider`
 - Download : [latest release](https://github.com/aurbain25/ua-slider/archive/v2.0.0.zip)
 
 ### Load
