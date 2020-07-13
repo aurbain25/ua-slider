@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/aurbain25/ua-slider/issues"
   },
-  "homepage": "https://github.com/aurbain25/ua-slider#readme"
+  "homepage": "https://github.com/aurbain25/ua-slider#readme",
+  "dependencies": {
+    "hammerjs": "^2.0.8"
+  }
 }
