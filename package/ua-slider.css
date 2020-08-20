@@ -1,0 +1,114 @@
+/*-----------------------------------*/
+/*---------------SLIDER--------------*/
+/*-----------------------------------*/
+
+.ua_slider {
+    position: relative;
+}
+
+.ua_slider .ua_slider_main_container {
+    overflow: hidden;
+}
+
+/*-----------------------------------*/
+/*-------------CONTAINER-------------*/
+/*-----------------------------------*/
+
+.ua_slider .ua_slider_container {
+    transition: transform 0.3s;
+    transform: translate3d(0, 0, 0);
+}
+
+.ua_slider .ua_slider_container::after {
+    content: '';
+    clear: both;
+    display: table;
+}
+
+/*-----------------------------------*/
+/*----------------ITEM---------------*/
+/*-----------------------------------*/
+
+.ua_slider .ua_slider_container .ua_slider_item {
+    float: left;
+    margin-bottom: 30px;
+}
+
+/*-----------------------------------*/
+/*-------------NAVIGATION------------*/
+/*-----------------------------------*/
+
+.ua_slider_next, .ua_slider_prev {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: #ffffff url("img/right.svg") center center no-repeat;
+    background-size: 20px 20px;
+    border-radius: 50%;
+    top: 50%;
+    margin-top: -30px;
+    right: -20px;
+    box-shadow: 0 15px 35px #3232321a, 0 5px 15px #0000001e;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.ua_slider_prev {
+    left: -20px;
+    right: auto;
+    background: #ffffff url("img/left.svg") center center no-repeat;
+}
+
+.ua_slider_next:hover, .ua_slider_prev:hover {
+    transform: scale(1.2);
+}
+
+/*-----------------------------------*/
+/*-------------PAGINATION------------*/
+/*-----------------------------------*/
+
+.ua_slider_pagination {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+.ua_slider_button {
+    /*background-color: #3232321a;*/
+    /*background-color: #cccccc;*/
+    background-color: #ffffff;
+    width: 10px;
+    height: 10px;
+
+    border-radius: 50%;
+
+    display: inline-block;
+
+    margin: 0 3px;
+
+    box-shadow: 0 2px 5px #3232321a;
+
+    transition: transform 0.3s;
+
+    cursor: pointer;
+}
+
+.ua_slider_button.active, .ua_slider_button:hover {
+    transform: scale(1.4);
+}
+
+.ua_slider_fix {
+    position: absolute;
+    top: 0;
+}
+
+.ua_slider_thumbnails img {
+    max-width: 50px;
+    margin-left: 5px;
+}
+
+.ua_slider_thumbnails img:nth-child(1) {
+    margin-left: 0;
+}

@@ -3,11 +3,13 @@
   "version": "2.0.0",
   "description": "Responsive touch slider with possibility to fix one item",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "sh build.sh",
+    "watch": "echo \"Error: no watch specified\"",
+    "test": "./node_modules/jasmine/bin/jasmine.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/aurbain25/ua-slider.git"
+    "url": "git+https://github.com/aurbain25/ua-slider.git"
   },
   "keywords": [
     "ua-slider",
@@ -25,6 +27,12 @@
   },
   "homepage": "https://github.com/aurbain25/ua-slider#readme",
   "dependencies": {
-    "hammerjs": "^2.0.8"
-  }
+    "@types/hammerjs": "^2.0.36",
+    "jasmine": "^3.5.0",
+    "typescript": "^3.9.6"
+  },
+  "devDependencies": {
+    "uglify-js": "^3.10.1"
+  },
+  "main": "index.js"
 }

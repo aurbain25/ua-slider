@@ -42,13 +42,13 @@ This package can be install with :
 #### 1. Add CSS
 
 ```html
-<link rel="stylesheet" href="./node_modules/ua-slider/ua-slider.min.css">
+<link rel="stylesheet" href="./node_modules/ua-slider/package/ua-slider.min.css">
 ```
 
 #### 2. Add UA Slider script
 
 ```html
-<script src="./node_modules/ua-slider/ua-slider.min.js"></script>
+<script src="./node_modules/ua-slider/package/ua-slider.min.js"></script>
 ```
 
 #### 3. Add markup

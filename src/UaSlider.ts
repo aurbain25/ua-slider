@@ -1,30 +1,29 @@
+import * as Hammer from 'hammerjs';
+
 class UaSlider {
 
-    /**
-     * This call type is called moveCallback
-     *
-     * @callback moveCallback
-     * @param {number} index
-     */
+    private element: HTMLElement;
+    private options: Options;
+    private children: HTMLElement[];
+    private root: HTMLElement;
+    private mainContainer: HTMLElement;
+    private allItemsContainer: HTMLElement;
+    private container: HTMLElement;
+    private currentItem: number;
+    private offset: number;
+    private slideFix: HTMLElement;
+    private autoplay: boolean;
+    private moveCallbacks: CallableFunction[];
+    private items: any[];
+    private pagination: HTMLElement;
 
     /**
      * @param {HTMLElement} element
-     * @param {Object}      options
-     * @param {Object}      options.slidesToScroll      Number of elements to scroll
-     * @param {Object}      options.slidesVisible       Number of elements visible in a slider
-     * @param {boolean}     options.navigation          Active the navigation
-     * @param {boolean}     options.navigationThumbnail Active the navigation by Thumbnail
-     * @param {boolean}     options.pagination          Active the pagination
-     * @param {boolean}     options.infinite            Active infinite slider
-     * @param {boolean}     options.autoplay            Active autoplay slider
-     * @param {number}      options.autoplaySpeed       Speed autoplay slider
-     * @param {number}      options.slideSpace          Space between two slide
-     * @param {number}      options.slideFix            Location of the fix slide (first or last slide visible)
-     * @param {boolean}     options.touchActive         Active touch slider
+     * @param {Options} options
      */
-    constructor(element, options = {}) {
+    constructor(element: HTMLElement, options?: any) {
         this.element = element;
-        this.options = Object.assign({}, {
+        this.options = {...{
             slidesToScroll: 1,
             slidesVisible: 1,
             navigation: true,
@@ -36,7 +35,7 @@ class UaSlider {
             slideSpace: 5,
             slideFix: 0,
             touchActive: true
-        }, options);
+        }, ...options};
 
         // Retrieve element's children
         this.children = [].slice.call(element.children);
@@ -157,10 +156,10 @@ class UaSlider {
             sliderManager.add(new Hammer.Pan({threshold: 0, pointers: 0}));
             sliderManager.on('pan', (e) => {
                 if (e.isFinal) {
-                    if (e.additionalEvent === "panleft") {
+                    if (e.type === "panleft") {
                         // console.log('next');
                         this.goToItem(this.currentItem + this.options.slidesToScroll);
-                    } else if (e.additionalEvent === "panright") {
+                    } else if (e.type === "panright") {
                         // console.log('previous');
                         this.goToItem(this.currentItem - this.options.slidesToScroll);
                     } else {
@@ -206,7 +205,7 @@ class UaSlider {
         if(this.offset < this.children.length) {
             this.slideFix = this.items[this.options.slideFix - 1].cloneNode(true);
 
-            let newList = [];
+            let newList: any[] = [];
 
             if(this.options.infinite) {
                 this.items.forEach((item, key) => {
@@ -302,7 +301,7 @@ class UaSlider {
     createPagination() {
         this.pagination = this.createDivWithClass('ua_slider_pagination');
 
-        let buttons = [];
+        let buttons: any[] = [];
 
         let calcNbButton = 0;
 
@@ -340,7 +339,7 @@ class UaSlider {
             buttons.push(button);
         }
 
-        this.onMove(index => {
+        this.onMove((index: number) => {
             let count = this.items.length - this.offset * 2;
 
             let calcIndexButton = ((index - this.offset) % count) / this.slidesToScroll;
@@ -391,12 +390,12 @@ class UaSlider {
      * @param {int} index
      * @param {boolean} animation
      */
-    goToItem(index, animation = true) {
+    goToItem(index: number, animation = true) {
         if (index < 0) {
             index = 0;
         }
 
-        if (parseInt(index) + this.slidesVisible >= this.items.length) {
+        if (index + this.slidesVisible >= this.items.length) {
             index = this.items.length - this.slidesVisible;
         }
 
@@ -436,7 +435,7 @@ class UaSlider {
     /**
      * @param {moveCallback} cb
      */
-    onMove(cb) {
+    onMove(cb: CallableFunction) {
         this.moveCallbacks.push(cb);
     }
 
@@ -454,7 +453,7 @@ class UaSlider {
      * @param {string} className
      * @returns {HTMLElement}
      */
-    createDivWithClass(className) {
+    createDivWithClass(className: string) {
         let div = document.createElement('div');
         div.setAttribute('class', className);
         return div;
@@ -465,7 +464,7 @@ class UaSlider {
      * @param {string} path
      * @returns {HTMLElement}
      */
-    createImg(path) {
+    createImg(path: string) {
         let img = document.createElement('img');
         img.setAttribute('src', path);
         return img;
@@ -522,7 +521,3 @@ class UaSlider {
         return window.screen.availWidth < window.innerWidth ? window.screen.availWidth : window.innerWidth;
     }
 }
-
-Element.prototype.uaSlider = function (object = {}) {
-    return new UaSlider(this, object);
-};

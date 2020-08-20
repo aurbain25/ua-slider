@@ -1,11 +1,11 @@
 // Classic Slider
-/*document.addEventListener('DOMContentLoaded', function () {
+// document.addEventListener('DOMContentLoaded', function () {
     new UaSlider(document.querySelector("#slider_1"), {});
-});*/
+// });
 
-document.querySelector("#slider_1").uaSlider({
-    navigation: true
-});
+// document.querySelector("#slider_1").uaSlider({
+//     navigation: true
+// });
 
 // Slider With Pagination
 document.addEventListener('DOMContentLoaded', function () {
